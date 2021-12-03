@@ -17,11 +17,10 @@ The amount of natural language text that is stored is growing rapidly and there 
 
 The web app itself is intended to be available on a live url for users and readers to interact with and ideally to allow users to label their own corpus of text.
 
-The web app is designed to allow unlabeled datasets to be labeled. However, in the project itself, we used a labeled dataset but then in the app treated it as unlabeled. We did this because it allowed us to measure certain benchmarks in terms of accuracy. It also had some advantages in terms of evaluating the product which we did partially through manually interacting with the web app and partly through web automation to simulate multiple potential paths that a user could reasonably take given the dataset and the functionality available in the web app.
+The web app is designed to allow unlabeled datasets to be labeled. However, in the project itself, we used a labeled dataset but then in the app treated it as unlabeled. We did this because it allowed us to measure certain benchmarks in terms of accuracy and to see how well the web app performed against those benchmarks. If we had started with a completely unlabeled dataset we would not have been able to have that baseline comparison. Using a pre-labeled dataset also had some further advantages in terms of evaluating the product. These will be explained later in more detail. At a high level though we evaluated the product partially through manually interacting with the web app, partly through web automation to simulate multiple potential paths that a user could reasonably take given the dataset and the functionality available in the web app, and partly by doing NLP on the underlying dataset directly to establish the benchmarks themselves.
 
 
 ### Dataset
-
 The main dataset used in this project is the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#). This dataset was pre-approved for the Capstone project and meant that the project could focus on steps 1, 3 and 4 of the Data Science Project lifecycle namely Project Design, Analysis and Modeling and finally deployment and presentation of results. Step 2 data collection and cleaning was effectively done by the providers of this dataset. In the Milestone projects I spent a lot of time and effort on data collection through automated web-scraping and for this project it was more beneficial to focus on the other areas mentioned which was made possible by the use of a pre-existing dataset.
 
 This classifier is to be used as a baseline of classification performance. Two things are investigated:
@@ -34,6 +33,10 @@ To measure the performance of the classifier we use a metric called the Area Und
 
 
 
+
+
+
+# Original Markdown Notes
 
 You can use the [editor on GitHub](https://github.com/michp-ai/ML-rapid-text-labeling/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 

@@ -5,18 +5,24 @@
 ## University of Michigan School of Information
 
 ### Contributors:
-https://github.com/Tak-Man
-https://github.com/michp-ai
+* https://github.com/Tak-Man
+* https://github.com/michp-ai
 
 December 2021
 
 ## ML Rapid Text Labeling - High Level Scenario
 The amount of natural language text that is stored is growing rapidly and there is an ever-increasing demand to extract information from that text. Many supervised learning applications exist for Natural Language Processing (NLP). Supervised learning requires labels to be attached to the text. Many texts do not have labels currently and there are many cases where it would be beneficial to add labels to text. Labeling can be slow, laborious and prone to error. There are many questions about labeling such as, how many labels is enough? Is it better to aim for more labels, or to aim for fewer labels of higher quality? What is an efficient way of labeling texts? In this Capstone project we build a web app that illustrates a user-friendly way of doing rapid text labeling. It gives a real-time indicator to the labeling user that can act as a reasonable guide about how many labels are enough. The web app implements multiple Data Science and Machine Learning techniques to enable the labeling user to progress through the labeling of a text corpus making decisions along the way about the trade-off between accuracy and speed. The final project submission consists of two repositories.
+1. https://github.com/Tak-Man/ML-rapid-text-labeling-app This is the web app itself
+2. https://github.com/Tak-Man/ML-rapid-text-labeling This repo is used to analyse the dataset selected for this project and evaluate the performance of the web-app in terms of speed and accuracy.
+
+The web app itself is intended to be available on a live url for users and readers to interact with and ideally to allow users to label their own corpus of text.
+
+The web app is designed to allow unlabeled datasets to be labeled. However, in the project itself, we used a labeled dataset but then in the app treated it as unlabeled. We did this because it allowed us to measure certain benchmarks in terms of accuracy. It also had some advantages in terms of evaluating the product which we did partially through manually interacting with the web app and partly through web automation to simulate multiple potential paths that a user could reasonably take given the dataset and the functionality available in the web app.
 
 
-### Purpose
+### Dataset
 
-This notebook investigates how well a classifier can predict the **event type (i.e. 'earthquake', 'fire', 'flood', 'hurricane)** of the Tweets in the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#).
+The main dataset used in this project is the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#). This dataset was pre-approved for the Capstone project and meant that the project could focus on steps 1, 3 and 4 of the Data Science Project lifecycle namely Project Design, Analysis and Modeling and finally deployment and presentation of results. Step 2 data collection and cleaning was effectively done by the providers of this dataset. In the Milestone projects I spent a lot of time and effort on data collection through automated web-scraping and for this project it was more beneficial to focus on the other areas mentioned which was made possible by the use of a pre-existing dataset.
 
 This classifier is to be used as a baseline of classification performance. Two things are investigated:
 - Is it possible to build a reasonable 'good' classifier of these tweets at all

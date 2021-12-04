@@ -15,7 +15,7 @@ The amount of natural language text that is stored is growing rapidly and there 
 1. https://github.com/Tak-Man/ML-rapid-text-labeling-app This is the web app itself
 2. https://github.com/Tak-Man/ML-rapid-text-labeling This repo is used to analyse the dataset selected for this project and evaluate the performance of the web-app in terms of speed and accuracy.
 
-The web app itself is intended to be available on a live url for users and readers to interact with and ideally to allow users to label their own corpus of text.
+The web app itself is intended to be available on a live website for users and readers to interact with and ideally to allow users to label their own corpus of text.
 
 _insert short demo video of the web app_
 
@@ -23,7 +23,7 @@ The web app is designed to allow unlabeled datasets to be labeled. However, in t
 
 
 ### Dataset
-The main dataset used in this project is the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#). This dataset was pre-approved for the Capstone project and meant that the project could focus on steps 1, 3 and 4 of the Data Science Project lifecycle namely Project Design, Analysis and Modeling and finally deployment and presentation of results. Step 2 data collection and cleaning was effectively done by the providers of this dataset. In the Milestone projects I spent a lot of time and effort on data collection through automated web-scraping and for this project it was more beneficial to focus on the other areas mentioned which was made possible by the use of a pre-existing dataset. The dataset contains fifty-three thousand labeled training examples. Another advantage of this datset is that it actually contains 2 separate types of labels. There is an event type which is one of "Earthquake", "Fire", "Flood" or "Hurricane". This is the label type used in the web app. These event type labels along with their value counts are shown in the figure below.
+The main dataset used in this project is the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#). This dataset was pre-approved for the Capstone project and meant that the project could focus on steps 1, 3 and 4 of the Data Science Project lifecycle namely Project Design, Analysis and Modeling and finally deployment and presentation of results. Step 2 data collection and cleaning was effectively done by the providers of this dataset. In the Milestone projects I spent a lot of time and effort on data collection through automated web-scraping and for this project it was more beneficial to focus on the other areas mentioned which was made possible by the use of a pre-existing dataset. The dataset contains fifty-three thousand labeled training examples. Another advantage of this dataset is that it contains 2 separate types of labels. There is an event type which is one of "Earthquake", "Fire", "Flood" or "Hurricane". This is the label type used in the web app. These event type labels along with their value counts are shown in the figure below. We see that the labels are unbalanced with over 31,000 of the 53,000 total belonging to one of the four classes.
 
 ![labels_df](https://user-images.githubusercontent.com/48130648/144719551-6904a108-089b-4c66-a4c3-e55d9c2a7fc6.JPG)
 

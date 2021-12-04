@@ -51,6 +51,14 @@ The Web App did report an overall quality score which is simply entropy calculat
 
 
 ### Feedback we got from User Demos
+We conducted three user demos with members of the instructional team. The first was with Professor Mei. We generally got very positive feedback from this demo and a suggestion that this could be useful even for NLP work being done at UMSI. We did this first demo early in the project and the feature to label based on search (with exclusion words and phrases) was developed in response to that initial conversation.
+
+We had a second opportunity to get user feedback particularly focused around UX which was very helpful. As a result, an alternative more user-friendly layout was developed as an option. This is now Layout 2 in the web app. Layout 1 remains as an option. We agree that Layout 2 is more intuitive for users and does not place as much visual information on the screen at the same time. This would certainly be more approachable for users early in their experience of using the app. We retained our existing layout as an option as well, since having got used to it quickly we felt that long-term users of the app might prefer not having to expand and contract sections but might prefer to have all the information on the same screen even if it would look cluttered to someone seeing it for the first time. For user experience, as in the speed vs accuracy trade-off and the choice of Data Science techniques to be used in the labeling we designed the app so that the user has maximum choice about their preferred approach.
+In the third presentation we talked about some further ML considerations about this approach and the importance of indicating to the user when is a good time to stop. The importance of knowing when to stop was also repeated when we met again with Professor Mei for our mid-way checkpoint.
+
+It was good to get these other perspectives that touched on points we had not considered. For me personally the UX session was possibly the most useful because it was the one where we were both had least knowledge and experience.
+
+Overall, the feedback we got was very positive and the users were all excited about what we had built which was encouraging. We also got similar feedback from our video standup presentation of the product. The feedback was so encouraging that we got asked if we have done market research into taking the product further. All we can say to that is watch this space and you never know…
 
 
 ### What we Learned from Automated Evaluation

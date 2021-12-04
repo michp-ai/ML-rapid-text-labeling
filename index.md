@@ -21,7 +21,16 @@ The web app is designed to allow unlabeled datasets to be labeled. However, in t
 
 
 ### Dataset
-The main dataset used in this project is the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#). This dataset was pre-approved for the Capstone project and meant that the project could focus on steps 1, 3 and 4 of the Data Science Project lifecycle namely Project Design, Analysis and Modeling and finally deployment and presentation of results. Step 2 data collection and cleaning was effectively done by the providers of this dataset. In the Milestone projects I spent a lot of time and effort on data collection through automated web-scraping and for this project it was more beneficial to focus on the other areas mentioned which was made possible by the use of a pre-existing dataset.
+The main dataset used in this project is the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#). This dataset was pre-approved for the Capstone project and meant that the project could focus on steps 1, 3 and 4 of the Data Science Project lifecycle namely Project Design, Analysis and Modeling and finally deployment and presentation of results. Step 2 data collection and cleaning was effectively done by the providers of this dataset. In the Milestone projects I spent a lot of time and effort on data collection through automated web-scraping and for this project it was more beneficial to focus on the other areas mentioned which was made possible by the use of a pre-existing dataset. Another advantage of this datset is that it actually contains 2 separate types of labels. There is an event type which is one of "Earthquake", "Fire", "Flood" or "Hurricane". This is the label type used in the web app. There is also a class type which classifies the event not so much in terms of the type of disaster but more in terms of the human response. The dataset contains fifty-three thousand labeled training examples.
+
+### How did we think about Speed?
+We thought about speed mainly from the user's point of view. We thought about it as the number of labeling actions, and the length of time each labeling action took. This meant that we had to use Data Science techniques that ran fast enough that someone using a website would find acceptable.  
+
+### Benchmarking using Existing Labels
+The labeling process is always a trade off between speed and accuracy. As a starting point we trained the model on different sized subsets of the training data and used the trained model to predict against the test set provided with the data. We then plotted a curve to see the accuracy achieved against the test set with differing amounts of training data. We repeated this for three different fast machine learning models available in scikit-learn.
+
+
+
 
 This classifier is to be used as a baseline of classification performance. Two things are investigated:
 - Is it possible to build a reasonable 'good' classifier of these tweets at all

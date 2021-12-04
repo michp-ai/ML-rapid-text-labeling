@@ -46,9 +46,25 @@ We thought about speed mainly from the user's point of view. We thought about it
 ### Benchmarking using Existing Labels
 The labeling process is always a trade off between speed and accuracy. As a starting point we trained the model on different sized subsets of the training data and used the trained model to predict against the test set provided with the data. We then plotted a curve to see the accuracy achieved against the test set with differing amounts of training data. We repeated this for three different fast machine learning models available in scikit-learn. Another important variable that impacts speed and accuracy is the maximum number of features output by the vectorizer. We experimented setting this to 100, 200, 300, 500, 800 and leaving it blank i.e. to take the full output of the vectorizer without constraining the number of features. We produced several charts of our benchmark runs. These visualizations helped us to compare the results in terms of speed and accuracy across the various settings of our grid search on the parameters of model type, max number of vectorizer features, and, number of training examples. 
 
-We conducted analysis of the dataset with both of the available type of labels provided in the initial dataset. This is because we recognise that there may be more than one way of labeling a text corpus and depending on the type, balance and number of labels required, the speed vs accuracy trade-off could shift, and, the number of labels required befored accuracy plateaus could also vary. The figure below illustrates what accuracy looks like as the number of labels increases in the early stages of the labeling process for the class label which we found to be the harder of the two label types to classify. Included in the image are multiple models, and multiple different settings for the number of max features output by the vectorizer.
+We conducted analysis of the dataset with both of the available type of labels provided in the initial dataset. This is because we recognise that there may be more than one way of labeling a text corpus and depending on the type, balance and number of labels required, the speed vs accuracy trade-off could shift, and, the number of labels required befored accuracy plateaus could also vary. 
 
-![harder_target_baseline_accuracy_early](https://user-images.githubusercontent.com/48130648/144720104-3dc8aa4c-5bb4-47ab-b840-49b1c322309e.png)
+The figure below shows the results of our benchmark analysis on 5 different types of base models plus a stacking classifier that combined all five and ran an SGDClassifier on the output of those to predict against the test set. The x axis illustrates how much of the training data was used in each case. The colors indicate the number of vectorizer features used (null means there was no limit and all vectorizer features were used). The highest accuracy achieved predicting on the test set in any of these tests was by the stacking classifier trained on the entire training set. 
+
+![main_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144724590-f29feb6a-1812-4a70-8dae-e99033272505.png)
+
+From this chart we learnt quite a few things. Firstly, MultinomialNB models were not competitive on accuracy and needed a lot more training data to learn from the more complex input provided when the number of vectorizer input features was not constrained to a maximum value. On all other models we see that more vectorizer features led to much greater accuracy pretty rapidly. We can see that in more detail if we limit the x axis to the first 3000 training examples only.
+
+
+
+The accuracy was 0.9747. The accuracy on the test set for the LinearSVC model trained on all the training data was 0.9743. This might make a big difference in a Kaggle competition but for most practical purposes the uplift from stacking may not be worth the additional technical complexity and run time. The following chart illustrates the accuracy versus run-time of the various models split out by the maximum number of vectorizer features. From this we can again see that MultinomialNB models were not competitive on accuracy and LinearSVC models were relatively not competitive on speed.
+
+![main_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144724744-0026f17e-252e-4ebd-8b14-11661b14d489.png)
+
+
+
+The figure below illustrates what accuracy looks like as the number of labels increases in the early stages of the labeling process for the alternative class label that we did not use in the web app. We found this label to be the harder of the two label types to classify. Included in the image are multiple models, and multiple different settings for the number of max features output by the vectorizer.
+
+
 
 
 ### What we learned through using the App Ourselves

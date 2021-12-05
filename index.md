@@ -11,18 +11,13 @@
 December 2021
 
 ## ML Rapid Text Labeling - High Level Scenario
-The amount of natural language text that is stored is growing rapidly and there is an ever-increasing demand to extract information from that text. Many supervised learning applications exist for Natural Language Processing (NLP). Supervised learning requires labels to be attached to the text. Many texts do not have labels currently and there are many cases where it would be beneficial to add labels to text. Labeling can be slow, laborious and prone to error. There are many questions about labeling such as, how many labels is enough? Is it better to aim for more labels, or to aim for fewer labels of higher quality? What is an efficient way of labeling texts? In this Capstone project we build a web app that illustrates a user-friendly way of doing rapid text labeling. It gives a real-time indicator to the labeling user that can act as a reasonable guide about how many labels are enough. The web app implements multiple Data Science and Machine Learning techniques to enable the labeling user to progress through the labeling of a text corpus making decisions along the way about the trade-off between accuracy and speed. The final project submission consists of two repositories.
+The amount of natural language text that is stored is growing rapidly and there is an ever-increasing demand to extract information from that text. Many supervised learning applications exist for Natural Language Processing (NLP). Supervised learning requires labels to be attached to the text. Many texts do not have labels currently and there are many cases where it would be beneficial to add labels to text. Labeling can be slow, laborious and prone to error. There are many questions about labeling such as, how many labels is enough? Is it better to aim for more labels, or to aim for fewer labels of higher quality? What is an efficient way of labeling texts? In this Capstone project we build a web app that illustrates a user-friendly way of doing rapid text labeling. It gives a real-time indicator to the labeling user that can act as a reasonable guide about how many labels are enough. The web app implements multiple Data Science and Machine Learning techniques to enable the labeling user to progress through the labeling of a text corpus making decisions along the way about the trade-off between accuracy and speed. The final project submission consists of two repositories plus this repo hosting this blog write-up of the project. The code repos are:
 1. https://github.com/Tak-Man/ML-rapid-text-labeling-app This is the web app itself
 2. https://github.com/Tak-Man/ML-rapid-text-labeling This repo is used to analyse the dataset selected for this project and evaluate the performance of the web-app in terms of speed and accuracy.
 
-The web app itself is intended to be available on a live website for users and readers to interact with and ideally to allow users to label their own corpus of text.
-
-_insert short demo video of the web app_
-
+### Dataset
 The web app is designed to allow unlabeled datasets to be labeled. However, in the project itself, we used a labeled dataset but then in the app treated it as unlabeled. We did this because it allowed us to measure certain benchmarks in terms of accuracy and to see how well the web app performed against those benchmarks. If we had started with a completely unlabeled dataset we would not have been able to have that baseline comparison. Using a pre-labeled dataset also had some further advantages in terms of evaluating the product. These will be explained later in more detail. At a high level though we evaluated the product partially through manually interacting with the web app, partly through web automation to simulate multiple potential paths that a user could reasonably take given the dataset and the functionality available in the web app, and partly by doing NLP on the underlying dataset directly to establish the benchmarks themselves.
 
-
-### Dataset
 The main dataset used in this project is the [Disaster tweets dataset](https://crisisnlp.qcri.org/humaid_dataset.html#). This dataset was pre-approved for the Capstone project and meant that the project could focus on steps 1, 3 and 4 of the Data Science Project lifecycle namely Project Design, Analysis and Modeling and finally deployment and presentation of results. Step 2 data collection and cleaning was effectively done by the providers of this dataset. In the Milestone projects I spent a lot of time and effort on data collection through automated web-scraping and for this project it was more beneficial to focus on the other areas mentioned which was made possible by the use of a pre-existing dataset. The dataset contains fifty-three thousand labeled training examples. Another advantage of this dataset is that it contains 2 separate types of labels. There is an event type which is one of "Earthquake", "Fire", "Flood" or "Hurricane". This is the label type used in the web app. These event type labels along with their value counts are shown in the figure below. We see that the labels are unbalanced with over 31,000 of the 53,000 total belonging to one of the four classes.
 
 ![labels_df](https://user-images.githubusercontent.com/48130648/144719551-6904a108-089b-4c66-a4c3-e55d9c2a7fc6.JPG)
@@ -31,7 +26,10 @@ There is also a class type which classifies the event not so much in terms of th
 
 ![alt_labels_df](https://user-images.githubusercontent.com/48130648/144719083-23410271-6b13-401b-959a-9424f6ed2546.JPG)
 
-_insert image of the dataset in pandas_
+### Functionality of the Web App
+The web app itself is intended to be available on a live website for users and readers to interact with and ideally to allow users to label their own corpus of text.
+
+_insert short demo video of the web app_
 
 ## How we Built the Web App
 ### Development with Flask
@@ -95,6 +93,8 @@ Overall, the feedback we got was very positive and the users were all excited ab
 
 ## What we Learned from Automated Evaluation
 
+### How we did Automated Evaluation
+
 ### Automated Evaluation - Increases in Speed
 
 
@@ -104,7 +104,10 @@ Our analysis showed that the highest accuracy against the test set was achieved 
 ### Automated Evaluation - Good Results in Terms of Speed and Accuracy
 
 
-## Software Development Approach and Lessons Learned
+## Software Development Approach and Experience
+
+
+## Lessons Learned
 
 
 ## Next Steps

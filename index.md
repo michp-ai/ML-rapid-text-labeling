@@ -54,6 +54,10 @@ The figure below shows the results of our benchmark analysis on 5 different type
 
 From this chart we learnt quite a few things. Firstly, MultinomialNB models were not competitive on accuracy and needed a lot more training data to learn from the more complex input provided when the number of vectorizer input features was not constrained to a maximum value. On all other models we see that more vectorizer features led to much greater accuracy pretty rapidly. Using 100 vectorizer features the accuracy was well below what could be achieved by 200 and there were improvements on all models for each additional increase from 200 to 300, 300 to 500 and 500 to 800. By the time 800 features were used most of the gap in performance between 100 features and having no limit was covered. Accuracy was more volatile on the Perceptron and PassiveAggressiveClassifer whilst the highest accuracy was achieved with LinearSVC closely followed by SGDClassifier. 
 
+If we look just at the results on the first 3000 training examples we learn some additional things. The accuracy with stacking is 0.9550 at this point but with the SGDClassifier it is 0.9489 which is quite a bit lower. With LinearSVC the best accuracy of 0.9495 is achieved with 800 max features rather than the full output of the vectorizer showing that LinearSVC needs a few thousand more training examples to fully benefit from the increased complexity of a model using full vectorizer output. For Multinomial we can see that initially it does better with the fewest number of vectorizer features. 
+
+![main_target_baseline_accuracy_early](https://user-images.githubusercontent.com/48130648/144741746-ac41ed87-51f6-42cb-b225-3a82a76fedce.png)
+
 The following chart illustrates the accuracy versus run-time of the various models split out by the maximum number of vectorizer features. From this we can again see that MultinomialNB models were not competitive on accuracy and LinearSVC models were relatively not competitive on speed.
 
 ![main_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144724744-0026f17e-252e-4ebd-8b14-11661b14d489.png)
@@ -64,9 +68,11 @@ Since there were two different types of labels available for this dataset we ran
 
 ![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144741001-ae06b37a-d03d-45d5-9e7f-25ff99065cee.png)
 
-The figure below illustrates what accuracy looks like as the number of labels increases in the early stages of the labeling process for the alternative class label that we did not use in the web app. We found this label to be the harder of the two label types to classify. Included in the image are multiple models, and multiple different settings for the number of max features output by the vectorizer.
+In general we found that the models took a bit longer to learn on the harder to classify class label and this decreased speed was especially noticeable on the LinearSVC model. For the full amount of training data and all vectorizer features this model took nearly 4 seconds to run whilst all the other models ran in under 1.5 seconds. This is a big difference to a user of a website. The chart also shows the benefit of not using all vectorizer features but instead just taking the top 800. Doing this LinearSVC ran in under 2 seconds and the other models tended to run in less than half a second which again would be noticeable to the user of a website especially for a process that could be repeated hundreds or even thousands of times.
 
-_insert first 3000 chart on main target_
+![harder_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144741970-a279d1e0-fd5c-4bf9-9394-489e1fda8ee7.png)
+
+
 
 
 

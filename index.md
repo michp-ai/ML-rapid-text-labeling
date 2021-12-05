@@ -64,6 +64,10 @@ The following chart illustrates the accuracy versus run-time of the various mode
 
 We initially chose SGDClassifier as the model for the app and based on this analysis we did not change that although we did increase the number of max features in the web app from the vectorizer from 100 to 800 to increase accuracy and we set n_jobs to -1 to increase speed. Our analysis showed that SGD achieved a good trade off between speed and accuracy.
 
+Speed on the stacking classifier is shown on the following chart and is clearly quite a bit slower than the individual charts. This is where SGD is used as the stacking model. Where LinearSVC was used as the stacking model in some cases we saw run times of 200+ seconds which is clearly an unacceptable wait time given the alternatives available with single models or the much faster SGD stacking. Again we see that using all features from the vectorizer takes a lot longer at 7.5 seconds training on all the data vs 2.7 training on all the data and limiting the vectorizer output to the top 800 features. We also notice an anomaly that in some cases the longest run-time is for the fewest number of training examples. For example using 800 vectorizer, training on 250 examples took 3.15 seconds compared to 2.7 training on all 53,000 records of training data.
+
+![main_target_stacking_speed_accuracy](https://user-images.githubusercontent.com/48130648/144742963-b989e838-8575-4652-8496-820189aaa3d6.png)
+
 Since there were two different types of labels available for this dataset we ran the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target. For the class labels accuracy was noticeably improving even after all the training data was being used.
 
 ![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144741001-ae06b37a-d03d-45d5-9e7f-25ff99065cee.png)

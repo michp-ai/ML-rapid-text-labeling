@@ -68,7 +68,7 @@ Speed on the stacking classifier is shown on the following chart and is clearly 
 
 ![main_target_stacking_speed_accuracy](https://user-images.githubusercontent.com/48130648/144742963-b989e838-8575-4652-8496-820189aaa3d6.png)
 
-Since there were two different types of labels available for this dataset we ran the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target. For the class labels accuracy was noticeably improving even after all the training data was being used.
+Since there were two different types of labels available for this dataset we ran some of the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target. For the class labels accuracy was noticeably improving even after all the training data was being used.
 
 ![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144741001-ae06b37a-d03d-45d5-9e7f-25ff99065cee.png)
 

@@ -52,20 +52,21 @@ The figure below shows the results of our benchmark analysis on 5 different type
 
 ![main_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144724590-f29feb6a-1812-4a70-8dae-e99033272505.png)
 
-From this chart we learnt quite a few things. Firstly, MultinomialNB models were not competitive on accuracy and needed a lot more training data to learn from the more complex input provided when the number of vectorizer input features was not constrained to a maximum value. On all other models we see that more vectorizer features led to much greater accuracy pretty rapidly. We can see that in more detail if we limit the x axis to the first 3000 training examples only. The figure below illustrates what accuracy looks like as the number of labels increases in the early stages of the labeling process for the alternative class label that we did not use in the web app. We found this label to be the harder of the two label types to classify. Included in the image are multiple models, and multiple different settings for the number of max features output by the vectorizer.
-
-_insert first 3000 chart on main target_
+From this chart we learnt quite a few things. Firstly, MultinomialNB models were not competitive on accuracy and needed a lot more training data to learn from the more complex input provided when the number of vectorizer input features was not constrained to a maximum value. On all other models we see that more vectorizer features led to much greater accuracy pretty rapidly. Using 100 vectorizer features the accuracy was well below what could be achieved by 200 and there were improvements on all models for each additional increase from 200 to 300, 300 to 500 and 500 to 800. By the time 800 features were used most of the gap in performance between 100 features and having no limit was covered. Accuracy was more volatile on the Perceptron and PassiveAggressiveClassifer whilst the highest accuracy was achieved with LinearSVC closely followed by SGDClassifier. 
 
 The following chart illustrates the accuracy versus run-time of the various models split out by the maximum number of vectorizer features. From this we can again see that MultinomialNB models were not competitive on accuracy and LinearSVC models were relatively not competitive on speed.
 
-
 ![main_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144724744-0026f17e-252e-4ebd-8b14-11661b14d489.png)
 
-Since there were two different types of labels available for this dataset we ran the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target.
+We initially chose SGDClassifier as the model for the app and based on this analysis we did not change that although we did increase the number of max features in the web app from the vectorizer from 100 to 800 to increase accuracy and we set n_jobs to -1 to increase speed. Our analysis showed that SGD achieved a good trade off between speed and accuracy.
+
+Since there were two different types of labels available for this dataset we ran the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target. For the class labels accuracy was noticeably improving even after all the training data was being used.
 
 ![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144741001-ae06b37a-d03d-45d5-9e7f-25ff99065cee.png)
 
+The figure below illustrates what accuracy looks like as the number of labels increases in the early stages of the labeling process for the alternative class label that we did not use in the web app. We found this label to be the harder of the two label types to classify. Included in the image are multiple models, and multiple different settings for the number of max features output by the vectorizer.
 
+_insert first 3000 chart on main target_
 
 
 

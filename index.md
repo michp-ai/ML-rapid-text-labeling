@@ -93,21 +93,23 @@ It was good to get these other perspectives that touched on points we had not co
 Overall, the feedback we got was very positive and the users were all excited about what we had built which was encouraging. We also got similar feedback from our video standup presentation of the product. The feedback was so encouraging that we got asked if we have done market research into taking the product further. All we can say to that is watch this space and you never know…
 
 
-### What we Learned from Automated Evaluation
+## What we Learned from Automated Evaluation
+
+### Automated Evaluation - Increases in Speed
 
 
-### Software Development Approach and Lessons Learned
+### Automated Evaluation - Increases in Accuracy
+Our analysis showed that the highest accuracy against the test set was achieved by a model learning from a situation where every training example was labeled individually. In terms of the trade-off between speed and accuracy this is the extreme end of the spectrum at maximal accuracy. Our purpose was not to improve that accuracy through some kind of Kaggle style optimisation challenge. However, we did look for scenarios where the app led to increased accuracy in certain conditions at certain points of the process versus a monotonic procession through all the examples labeling one at a time.
+
+### Automated Evaluation - Good Results in Terms of Speed and Accuracy
 
 
+## Software Development Approach and Lessons Learned
 
 
-This classifier is to be used as a baseline of classification performance. Two things are investigated:
-- Is it possible to build a reasonable 'good' classifier of these tweets at all
-- If it is possible to build a classifier how well does the classifier perform using all of the labels from the training data
+## Next Steps
 
-If it is possible to build a classifier using all of the labels in the training dataset then it should be possible to implement a method for rapidly labeling the corpus of texts in the dataset. Here we think of rapid labeling as any process that does not require the user to label each text in the corpus, one at a time.
 
-To measure the performance of the classifier we use a metric called the Area Under the Curve (AUC). This metric was used because we believe it is a good metric for the preliminary work in this project. If a specific goal emerges later that requires a different metric, then the appropriate metric can be used at that time. The consequence of false positives (texts classified as having a certain label, but are not that label) and false negatives should be considered. For example, a metric like precision can be used to minimize false positives. The AUC metric provides a value between zero and one, with a higher number indicating better classification performance.
 
 
 

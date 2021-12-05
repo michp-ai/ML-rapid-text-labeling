@@ -68,11 +68,11 @@ Speed on the stacking classifier is shown on the following chart and is clearly 
 
 Since there were two different types of labels available for this dataset we ran some of the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target. For the class labels accuracy was noticeably improving even after all the training data was being used.
 
-![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144741001-ae06b37a-d03d-45d5-9e7f-25ff99065cee.png)
+![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144743926-17133368-3aad-4261-b2dd-ba577008e374.png)
 
 In general we found that the models took a bit longer to learn on the harder to classify class label and this decreased speed was especially noticeable on the LinearSVC model. For the full amount of training data and all vectorizer features this model took nearly 4 seconds to run whilst all the other models ran in under 1.5 seconds. This is a big difference to a user of a website. The chart also shows the benefit of not using all vectorizer features but instead just taking the top 800. Doing this LinearSVC ran in under 2 seconds and the other models tended to run in less than half a second which again would be noticeable to the user of a website especially for a process that could be repeated hundreds or even thousands of times.
 
-![harder_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144741970-a279d1e0-fd5c-4bf9-9394-489e1fda8ee7.png)
+![harder_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144743931-8ec356b0-eef3-4853-8811-02372bd7c30d.png)
 
 In summary what we learned from this benchmark analysis is that the SGD Classifier achieved a good trade-off between accuracy and speed since it was more accurate than most single models and much faster than LinearSVC. Stacking in some cases achieved the highest accuracy although it did not always do that and the increased accuracy came with an expense in terms of speed. We also learned that even using the same dataset with different label types the point at which accuracy predicting against a test set begins to plateau vary. This is important because it illustrates that there is no fixed point where the marginal gains of increased labeling tail off and it makes sense to stop labeling.
 

@@ -5,8 +5,9 @@
 ## University of Michigan School of Information
 
 ### Contributors:
-* https://github.com/Tak-Man
-* https://github.com/michp-ai
+https://github.com/Tak-Man
+
+https://github.com/michp-ai
 
 December 2021
 

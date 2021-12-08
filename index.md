@@ -5,16 +5,15 @@
 ## University of Michigan School of Information
 
 ### Contributors:
-https://github.com/Tak-Man
-
-https://github.com/michp-ai
+* [https://github.com/Tak-Man](https://github.com/Tak-Man) 
+* [https://github.com/michp-ai](https://github.com/michp-ai)
 
 December 2021
 
 ## ML Rapid Text Labeling - High Level Scenario
 The amount of natural language text that is stored is growing rapidly and there is an ever-increasing demand to extract information from that text. Many supervised learning applications exist for Natural Language Processing (NLP). Supervised learning requires labels to be attached to the text. Many texts do not have labels currently and there are many cases where it would be beneficial to add labels to text. Labeling can be slow, laborious and prone to error. There are many questions about labeling such as, how many labels is enough? Is it better to aim for more labels, or to aim for fewer labels of higher quality? What is an efficient way of labeling texts? In this Capstone project we build a web app that illustrates a user-friendly way of doing rapid text labeling. It gives a real-time indicator to the labeling user that can act as a reasonable guide about how many labels are enough. The web app implements multiple Data Science and Machine Learning techniques to enable the labeling user to progress through the labeling of a text corpus making decisions along the way about the trade-off between accuracy and speed. The final project submission consists of two repositories plus this repo hosting this blog write-up of the project. The code repos are:
-1. https://github.com/Tak-Man/ML-rapid-text-labeling-app This is the web app itself
-2. https://github.com/Tak-Man/ML-rapid-text-labeling This repo is used to analyse the dataset selected for this project and evaluate the performance of the web-app in terms of speed and accuracy.
+1. [https://github.com/Tak-Man/ML-rapid-text-labeling-app](https://github.com/Tak-Man/ML-rapid-text-labeling-app) This is the web app itself
+2. [https://github.com/Tak-Man/ML-rapid-text-labeling](https://github.com/Tak-Man/ML-rapid-text-labeling) This repo is used to analyse the dataset selected for this project and evaluate the performance of the web-app in terms of speed and accuracy.
 
 ### Dataset
 The web app is designed to allow unlabeled datasets to be labeled. However, in the project itself, we used a labeled dataset but then in the app treated it as unlabeled. We did this because it allowed us to measure certain benchmarks in terms of accuracy and to see how well the web app performed against those benchmarks. If we had started with a completely unlabeled dataset we would not have been able to have that baseline comparison. Using a pre-labeled dataset also had some further advantages in terms of evaluating the product. These will be explained later in more detail. At a high level though we evaluated the product partially through manually interacting with the web app, partly through web automation to simulate multiple potential paths that a user could reasonably take given the dataset and the functionality available in the web app, and partly by doing NLP on the underlying dataset directly to establish the benchmarks themselves.

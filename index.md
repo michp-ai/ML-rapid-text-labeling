@@ -31,7 +31,8 @@ The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuap
 
 If you’d prefer to see how it works take a look at this demo video:
 
-![demo_video](https://user-images.githubusercontent.com/48130648/145676244-40294aaa-ea51-4981-8fa0-c610f9e4d268.mp4)
+<video src="https://user-images.githubusercontent.com/48130648/145676244-40294aaa-ea51-4981-8fa0-c610f9e4d268.mp4" controls="controls" style="max-width: 730px;">
+</video>
 
 ## How we Built the Web App
 ### Development with Flask

@@ -30,7 +30,8 @@ There is also a class type which classifies the event not so much in terms of th
 The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/). Why not have a go to see what all the excitement is about? 
 
 If you’d prefer to see how it works take a look at this demo video:
-https://user-images.githubusercontent.com/48130648/145676244-40294aaa-ea51-4981-8fa0-c610f9e4d268.mp4
+
+![demo_video](https://user-images.githubusercontent.com/48130648/145676244-40294aaa-ea51-4981-8fa0-c610f9e4d268.mp4)
 
 ## How we Built the Web App
 ### Development with Flask

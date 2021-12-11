@@ -90,7 +90,15 @@ Having seen these encouraging results we decided to explore further by moving to
 Both of these approaches led to massive time-savings in terms of labeling for achieving same level of accuracy when a model was trained on those labels and used to predict against the test set. The time saving for alternately labeling 50 tweets from the All Texts list then 50 tweets the model was least confident about was 70% compared to just labeling from the All Texts list. The time saving for labeling 50 tweets from All Texts then just using the Difficult Texts option from then onwards was even greater at 82%. The option that the app provides for smart selection of what to label next via Difficult Texts enables massive time-savings in terms of user labeling effort. This is where each approach achieves the same level of accuracy when a model was trained on those labels and used to predict against the test set. This experiment had the added benefit that the accuracy on the test set of 0.95 was reasonably close to the optimal accuracy of 0.969 that is achieved when all 53,000 rows of training data and their associated training labels are used to train the exact same model. In many real-world situations this level of accuracy might be acceptable and in those where accuracy is important the app allows the user to continue labeling more examples to get further accuracy improvements.
 
 ### Automated Evaluation - Indicators for When to Stop Labeling
+The results just described are great, but, in the real world where the user doesn't have a test set to benchmark against, how will they know when it makes sense to stop labeling? This is a really important question about the usability of the app. Using the same experiments described above we plotted accuracy against the test set (which would not be available on an unlabeled corpus) against the Overall Quality Score in the app. We first did this for texts labeled via All Texts using data from the full experiment.
 
+![overall_quality_all_10000](https://user-images.githubusercontent.com/48130648/145680316-14f75a79-f193-49c9-970c-586c2f8db004.png)
+
+We can see that overall quality does track accuracy pretty closely and since the user doesn't have access to accuracy directly, it could be a useful proxy for when to stop. If we compare those results to labeling via the Difficult Texts approach, we see again that the overall quality score could serve as a reasonable proxy of accuracy and could be used to allow the user to make decisions about when to stop once the number of labels provided gets past a few hundred.
+
+![overall_quality_difficult_texts](https://user-images.githubusercontent.com/48130648/145680417-b8ea1156-5c81-4cea-9292-82fa328821b1.png)
+
+Another thing we can see from these last two charts is that both Overall Quality Score and Accuracy are less volatile using the Difficult Texts approach. The web app also enables this as another desirable outcome for the user who is labeling texts and wants to know when is a good time to stop. 
 
 ## Software Development Approach and Experience ?
 

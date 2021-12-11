@@ -27,14 +27,14 @@ There is also a class type which classifies the event not so much in terms of th
 ![alt_labels_df](https://user-images.githubusercontent.com/48130648/144719083-23410271-6b13-401b-959a-9424f6ed2546.JPG)
 
 ### Functionality of the Web App
-The web app contains a wide range of functions. It allows users to (1) label a single tweet at a time from a list of tweets in the dataset, (2) label groups of tweets based on the cosine similarity of their text, (3) label groups of tweets based on predictions made by the SGD Classifier, (4) label tweets by searching for text with include and exclude terms, (5) label the tweets that the SGD Classifier model is least confident in predicting, and finally (6) label all remaining unlabeled tweets.
+The web app contains a wide range of functions. It allows users to (1) label a single tweet at a time from a list of tweets in the dataset, (2) label groups of tweets based on the cosine similarity of their text, (3) label groups of tweets based on predictions made by the SGD Classifier, (4) label tweets by searching for text with include and exclude terms, (5) label the tweets that the SGD Classifier model is least confident in predicting, (6) label all remaining unlabeled tweets, and (7) to download the generated labels plus the SGD Classifier model trained on those labels.
 
 This demo video introduces the key functionality:
 
 <video src="https://user-images.githubusercontent.com/48130648/145676244-40294aaa-ea51-4981-8fa0-c610f9e4d268.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
-The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/).
+The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/). This is a working version of what is described in the blog containing all the functionality just described. 
 
 
 ## How we Built the Web App
@@ -62,12 +62,9 @@ It was good to get these other perspectives that touched on points we had not co
 Overall, the feedback we got was very positive and the users were all excited about what we had built which was encouraging. We also got similar feedback from our video standup presentation of the product. The feedback was so encouraging that we got various suggestions for how we could take this project forward. All we can say to that is watch this space and you never know…
 
 
-## What we Learned from Automated Evaluation
+### What we Learned from Automated Evaluation
 
-### How we did Automated Evaluation
-
-### Automated Evaluation - Increases in Speed
-
+The manual testing of the app we did plus the user demos gave us a good sense of how the app could perform in terms of user experience and speed of labeling. But, we needed a new approach to understand how it performed in terms of speed vs accuracy. Because we wanted to check how it was performing at many different points in the labeling process, and, we wanted to explore different pathways through using the app, we realised an automated solution would be required. We chose Selenium for this which is tool designed for automated testing of websites. Using the Selenium library in python we were able to explore many different ways of using the app and how they performed in terms of speed vs accuracy. 
 
 ### Automated Evaluation - Increases in Accuracy
 Our analysis showed that the highest accuracy against the test set was achieved by a model learning from a situation where every training example was labeled individually. In terms of the trade-off between speed and accuracy this is the extreme end of the spectrum at maximal accuracy. Our purpose was not to improve that accuracy through some kind of Kaggle style optimisation challenge. However, we did look for scenarios where the app led to increased accuracy in certain conditions at certain points of the process versus a monotonic procession through all the examples labeling one at a time. One intuition was that the model might learn quicker where it is forced to train on the hardest to predict labels part of the time rather than random labels. The Difficult texts functionality in the app allows this to be done. First we set up a baseline where we labeled only on texts selected in a random order via the All Texts functionality. (The randomization is done before the data is presented to the user for the first time). We worked through the data in sequence and labeled each tweet with the exact label that the original annotation did. At the end of every 50 tweets we simply moved to the next page and repeated the process. Next we labeled the first 50 tweets in exactly the same way. But before moving to the next page on All Texts, we labeled the 10 most difficult tweets from the Difficult Texts function. Then we did another 50 tweets via All Texts and 10 more from Difficult Texts and so on until we reached the end of the experiment. Finally we repeated the process but doing 20 difficult texts each time rather than 10. This improved accuracy for no loss of speed versus individual labeling as the fllowing charts illustrate.
@@ -86,13 +83,15 @@ It may be a little abstract to think of accuracy being 3% or 4% higher so we can
 
 First to be clear on the process. The model in the app is trained on the labels provided in the labeling experiment then the same model is used to predict against the test set. The first time the model reaches 90% accuracy on the test set the number of training labels required to reach that threshold is recorded. We can see a vast improvement in time taken to reach the threshold where the Difficult Texts functionality is used. In fact it takes more than twice as long to reach the threshold without using Difficult Texts as it does using the 50 All Texts 20 Difficult Texts labeling pattern. We were very happy with this outcome as it shows that the app doesn't just lead to improvements in speed but it can improve accuracy in meaningful ways that correspond to realistic ways that the app could be used.
 
+Having seen these encouraging results we decided to explore further by moving towards using more difficult labels and running longer experiments. We tried labelling alternately 50 tweets from the All Texts list followed by 50 tweets from the Difficult texts list. Then we tried initially labeling 50 tweets from the All Texts list so that the model had an initial starting point then just using Difficult labels for the rest of the time. Both of these approaches led to massive time-savings in terms of labeling for achieving same level of accuracy when a model was trained on those labels and used to predict against the test set.
+
 ### Automated Evaluation - Indicators for When to Stop Labeling
 
 
-## Software Development Approach and Experience
+## Software Development Approach and Experience ?
 
 
-## Lessons Learned
+## Lessons Learned ?
 
 
 ## Next Steps

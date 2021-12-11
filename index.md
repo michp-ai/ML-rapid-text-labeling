@@ -73,7 +73,7 @@ Our analysis showed that the highest accuracy against the test set was achieved 
 
 The first chart shows the full extent of the experiment and it is clear that where the difficult texts functionality is used it leads to consistently improved accuracy versus simply working through the texts in order.
 
-If we zoom in to the poertion of the experiment where some labels are in place and accuracy has exceeded 80% we can see more clearly that using 20 difficult texts after each 50 texts labeled via all texts leads to a further slight increase in accuracy versus labeling 10 difficult texts after each 50. It also shows that both are considerably ahead of the accuracy achieved without difficult texts being used.
+If we zoom in to the portion of the experiment where some labels are in place and accuracy has exceeded 80% we can see more clearly that using 20 difficult texts after each 50 texts labeled via all texts leads to a further slight increase in accuracy versus labeling 10 difficult texts after each 50. It also shows that both are considerably ahead of the accuracy achieved without difficult texts being used.
 
 ![eda_difficult_closeup](https://user-images.githubusercontent.com/48130648/144917295-7f0b4d53-de4f-483c-a2e9-19151cbba882.png)
 
@@ -100,6 +100,8 @@ We can see that overall quality does track accuracy pretty closely and since the
 
 Another thing we can see from these last two charts is that both Overall Quality Score and Accuracy are less volatile using the Difficult Texts approach. The web app also enables this as another desirable outcome for the user who is labeling texts and wants to know when is a good time to stop. 
 
+Overall this is great news for the app. Not only does using the Difficult Texts feature to select the best tweets to label next for rapidly increasing accuracy, but, the app also gives the user an effective signal in terms of the Overall Quality Score that helps them to decide when to stop labeling.
+
 ## Software Development Approach and Experience ?
 
 
@@ -107,7 +109,13 @@ Another thing we can see from these last two charts is that both Overall Quality
 
 
 ## Next Steps
+In terms of the web app as a project we are exploring a couple of options of how it could be developed in future. In terms of specific functionality, there a few potential enhancements that could be made which are listed below:
 
+* Add clearer nudges to encourage the user to use the Difficult Texts approach as their main way of selecting new tweets to process.
+* An option to show only unlabeled tweets in All Texts
+* An option to allow multiple save states not just one. (This is a constraint of the current free hosting option, that could be removed if we went towards paid hosting.)
+* Potentially add an option for the Label All Texts button to use slower and more powerful models. Most of the time the user is interacting with the app speed is important but some users may be willing to wait longer to get the final labels. For example, a user might start labeling all texts before lunch and be willing to wait the length of a lunch-break to get the final output, or, they might be willing to wait overnight if it would lead to more accurate labels. That could allow the implementation neural networks and pre-trained embeddings which would likely improve accuracy. Two reasons we did not do this initially were speed and the constraints of free hosting.
+* A visual display of the progress of the Overall Quality Score.
 
 
 ### More Details on Benchmarking

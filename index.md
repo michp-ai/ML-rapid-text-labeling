@@ -133,8 +133,7 @@ In general we found that the models took a bit longer to learn on the harder to 
 
 ![harder_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144743931-8ec356b0-eef3-4853-8811-02372bd7c30d.png)
 
-In summary what we learned from this benchmark analysis is that the SGD Classifier achieved a good trade-off between accuracy and speed since it was more accurate than most single models and much faster than LinearSVC. Stacking in some cases achieved the highest accuracy although it did not always do that and the increased accuracy came with an expense in terms of speed. We also learned that even using the same dataset with different label types the point at which accuracy predicting against a test set begins to plateau vary. This is important because it illustrates that there is no fixed point where the marginal gains of increased labeling tail off and it makes sense to stop labeling.
-
+In summary what we learned from this benchmark analysis is that the SGD Classifier achieved a good trade-off between accuracy and speed since it was more accurate than most single models and much faster than LinearSVC. Stacking in some cases achieved the highest accuracy although it did not always do that and the increased accuracy came with an expense in terms of speed. We also learned that even using the same dataset with different label types the point at which accuracy predicting against a test set begins to plateau vary. This is important because it illustrates that there is no fixed point where the marginal gains of increased labeling tail off and it makes sense to stop labeling. This is why it is very useful to give the user of the app who is labeling a previously unlabeled corpus an indicator to help them decide when to stop labeling. As we showed in the section on Automated Evaluation above, the Overall Quality Score provides an effective signal to the user to help them make this decision.
 
 
 

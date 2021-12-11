@@ -116,6 +116,10 @@ In terms of the web app as a project we are exploring a couple of options of how
 * An option to allow multiple save states not just one. (This is a constraint of the current free hosting option, that could be removed if we went towards paid hosting.)
 * Potentially add an option for the Label All Texts button to use slower and more powerful models. Most of the time the user is interacting with the app speed is important, but some users may be willing to wait longer to get the final labels. For example, a user might start labeling all texts before lunch and be willing to wait the length of a lunchbreak to get the final output, or, they might be willing to wait overnight if it would lead to more accurate labels. That could allow the implementation neural networks and pre-trained embeddings which would likely improve accuracy. Two reasons we did not do this initially were speed and the constraints of free hosting.
 * A visual display of the progress of the Overall Quality Score.
+* Evaluate with other text corpuses.
+
+### Conclusion
+There is always a trade-off between speed and accuracy in labeling a previously unlabeled text corpus. The wide range of functionality in the web app we developed allows the user a lot of control over how they approach that speed-accuracy trade-off. The web app also allows an effective user experience. The user of the Difficult Texts function in the web app could be described as the ace feature that means acceptable accuracy can be achieved with much less labeling effort. Meanwhile, the Overall Quality Score provides the user with a clear indicator that is a good proxy for how accurately a model would perform based on the labels provided so far in the labeling process. By starting early we were able to achieve a lot in the two months of our Capstone project. This is a good foundation for further developments of functionality and Applications of Data Science specfically in Natural Language Processing.
 
 
 ### More Details on Benchmarking

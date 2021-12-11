@@ -1,8 +1,8 @@
 # Faster More Accurate Text Labeling
 ## How we Built a Web App using Data Science to Vastly Improved Speed and Accuracy in Text Labeling
 
-###<span style="color:blue">Capstone Project for Master of Applied Data Science</span>
-###<span style="color:blue">University of Michigan School of Information</span>
+### <span style="color:red">Capstone Project for Master of Applied Data Science</span>
+### <span style="color:red">University of Michigan School of Information</span>
 
 ### Contributors:
 * [https://github.com/Tak-Man](https://github.com/Tak-Man) 

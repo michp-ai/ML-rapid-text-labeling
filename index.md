@@ -1,4 +1,5 @@
-# ML Rapid Text Labeling
+# Faster More Accurate Text Labeling with ML
+## How we Built a Web App using Data Science to Vastly Improved Speed and Accuracy in Text Labeling
 
 ## Capstone Project for Master of Applied Data Science
 

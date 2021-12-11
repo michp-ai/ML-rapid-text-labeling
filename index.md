@@ -28,9 +28,10 @@ There is also a class type which classifies the event not so much in terms of th
 ![alt_labels_df](https://user-images.githubusercontent.com/48130648/144719083-23410271-6b13-401b-959a-9424f6ed2546.JPG)
 
 ### Functionality of the Web App
-The web app itself is intended to be available on a live website for users and readers to interact with and ideally to allow users to label their own corpus of text.
+The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/). Why not have a go to see what all the excitement is about? 
 
-_insert short demo video of the web app_
+If you’d prefer to see how it works take a look at this demo video:
+https://user-images.githubusercontent.com/48130648/145676244-40294aaa-ea51-4981-8fa0-c610f9e4d268.mp4
 
 ## How we Built the Web App
 ### Development with Flask
@@ -39,43 +40,8 @@ _Tak-Man to update this section, images and videos welcome_
 ### Deployment with Heroku
 _Tak-Man to update this section, images and videos welcome_
 
-### How did we think about Speed?
-We thought about speed mainly from the user's point of view. We thought about it as the number of labeling actions, and the length of time each labeling action took. This meant that we had to use Data Science techniques that ran fast enough that someone using a website would find acceptable. It is important to repeat that there is a trade-off between speed and accuracy in any labeling process. Although we wanted the web app to be fast we also wanted to achieve reasonable accuracy. This is not the same as optimal accuracy that could be achieved by individually labeling each of the 53,000 examples and then attempting a Kaggle style optimisation of the accuracy against the test set by running multiple different sophisticated models and ensembling the results together. Instead we were looking for a reasonable level of accuracy that could be acceptable in a real-world scenario. A motivating example for this came from a workplace setting where one of the team had to manually label thousands of customer emails with the department they should be sent to for further investigation. The process of labeling was very slow and the list of emails was gorwing as the labeling was done. Potentially this could have been a never ending task! A tool to speed up the process would have been very useful so that beyond that supervised learning techniques could then start learning and automatically identifying which emails should go to which department. However, we believe that although the app grew out of this one example, there are many other potential use cases in NLP where rapid labeling of text would be very useful. Obviously in each case the user wil have to decide based on the dataset and the purpose of the labeling how they want to handle the trade-off between accuracy and speed. During that process they should consider speed of labeling itself, speed of model training and speed of inference or making predictions. The way we built the web app itself allowed for speed of user interaction which included model training and in some cases prediction as well for the automated labeling options. In the evaluation we timed both how long the models would take when running with the app and how long those models would take to train and predict outside the app.
-
-### Benchmarking using Existing Labels
-The labeling process is always a trade off between speed and accuracy. As a starting point we trained the model on different sized subsets of the training data and used the trained model to predict against the test set provided with the data. We then plotted a curve to see the accuracy achieved against the test set with differing amounts of training data. We repeated this for three different fast machine learning models available in scikit-learn. Another important variable that impacts speed and accuracy is the maximum number of features output by the vectorizer. We experimented setting this to 100, 200, 300, 500, 800 and leaving it blank i.e. to take the full output of the vectorizer without constraining the number of features. We produced several charts of our benchmark runs. These visualizations helped us to compare the results in terms of speed and accuracy across the various settings of our grid search on the parameters of model type, max number of vectorizer features, and, number of training examples. 
-
-We conducted analysis of the dataset with both of the available type of labels provided in the initial dataset. This is because we recognise that there may be more than one way of labeling a text corpus and depending on the type, balance and number of labels required, the speed vs accuracy trade-off could shift, and, the number of labels required befored accuracy plateaus could also vary. 
-
-The figure below shows the results of our benchmark analysis on 5 different types of base models plus a stacking classifier that combined all five and ran an SGDClassifier on the output of those to predict against the test set. The x axis illustrates how much of the training data was used in each case. The colors indicate the number of vectorizer features used (null means there was no limit and all vectorizer features were used). The highest accuracy achieved predicting on the test set in any of these tests was by the stacking classifier trained on the entire training set. The accuracy in this case was 0.9747. The accuracy on the test set for the LinearSVC model trained on all the training data was 0.9743. This might make a big difference in a Kaggle competition but for most practical purposes the uplift from stacking may not be worth the additional technical complexity and run time. 
-
-![main_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144724590-f29feb6a-1812-4a70-8dae-e99033272505.png)
-
-From this chart we learnt quite a few things. Firstly, MultinomialNB models were not competitive on accuracy and needed a lot more training data to learn from the more complex input provided when the number of vectorizer input features was not constrained to a maximum value. On all other models we see that more vectorizer features led to much greater accuracy pretty rapidly. Using 100 vectorizer features the accuracy was well below what could be achieved by 200 and there were improvements on all models for each additional increase from 200 to 300, 300 to 500 and 500 to 800. By the time 800 features were used most of the gap in performance between 100 features and having no limit was covered. Accuracy was more volatile on the Perceptron and PassiveAggressiveClassifer whilst the highest accuracy was achieved with LinearSVC closely followed by SGDClassifier. 
-
-If we look just at the results on the first 3000 training examples we learn some additional things. The accuracy with stacking is 0.9550 at this point but with the SGDClassifier it is 0.9489 which is quite a bit lower. With LinearSVC the best accuracy of 0.9495 is achieved with 800 max features rather than the full output of the vectorizer showing that LinearSVC needs a few thousand more training examples to fully benefit from the increased complexity of a model using full vectorizer output. For Multinomial we can see that initially it does better with the fewest number of vectorizer features. 
-
-![main_target_baseline_accuracy_early](https://user-images.githubusercontent.com/48130648/144741746-ac41ed87-51f6-42cb-b225-3a82a76fedce.png)
-
-The following chart illustrates the accuracy versus run-time of the various models split out by the maximum number of vectorizer features. From this we can again see that MultinomialNB models were not competitive on accuracy and LinearSVC models were relatively not competitive on speed.
-
-![main_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144724744-0026f17e-252e-4ebd-8b14-11661b14d489.png)
-
-We initially chose SGDClassifier as the model for the app and based on this analysis we did not change that although we did increase the number of max features in the web app from the vectorizer from 100 to 800 to increase accuracy and we set n_jobs to -1 to increase speed. Our analysis showed that SGD achieved a good trade off between speed and accuracy.
-
-Speed on the stacking classifier is shown on the following chart and is clearly quite a bit slower than the individual charts. This is where SGD is used as the stacking model. Where LinearSVC was used as the stacking model in some cases we saw run times of 200+ seconds which is clearly an unacceptable wait time given the alternatives available with single models or the much faster SGD stacking. Again we see that using all features from the vectorizer takes a lot longer at 7.5 seconds training on all the data vs 2.7 training on all the data and limiting the vectorizer output to the top 800 features. We also notice an anomaly that in some cases the longest run-time is for the fewest number of training examples. For example using 800 vectorizer, training on 250 examples took 3.15 seconds compared to 2.7 training on all 53,000 records of training data.
-
-![main_target_stacking_speed_accuracy](https://user-images.githubusercontent.com/48130648/144742963-b989e838-8575-4652-8496-820189aaa3d6.png)
-
-Since there were two different types of labels available for this dataset we ran some of the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target. For the class labels accuracy was noticeably improving even after all the training data was being used.
-
-![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144743926-17133368-3aad-4261-b2dd-ba577008e374.png)
-
-In general we found that the models took a bit longer to learn on the harder to classify class label and this decreased speed was especially noticeable on the LinearSVC model. For the full amount of training data and all vectorizer features this model took nearly 4 seconds to run whilst all the other models ran in under 1.5 seconds. This is a big difference to a user of a website. The chart also shows the benefit of not using all vectorizer features but instead just taking the top 800. Doing this LinearSVC ran in under 2 seconds and the other models tended to run in less than half a second which again would be noticeable to the user of a website especially for a process that could be repeated hundreds or even thousands of times.
-
-![harder_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144743931-8ec356b0-eef3-4853-8811-02372bd7c30d.png)
-
-In summary what we learned from this benchmark analysis is that the SGD Classifier achieved a good trade-off between accuracy and speed since it was more accurate than most single models and much faster than LinearSVC. Stacking in some cases achieved the highest accuracy although it did not always do that and the increased accuracy came with an expense in terms of speed. We also learned that even using the same dataset with different label types the point at which accuracy predicting against a test set begins to plateau vary. This is important because it illustrates that there is no fixed point where the marginal gains of increased labeling tail off and it makes sense to stop labeling.
+### How did we think about Speed and Accuracy?
+We thought about speed mainly from the user's point of view. We thought about it as the number of labeling actions, and the length of time each labeling action took. This meant that we had to use Data Science techniques that ran fast enough that someone using a website would find acceptable. It is important to be clear that there is a trade-off between speed and accuracy in any labeling process. Although we wanted the web app to be fast we also wanted to achieve reasonable accuracy. This is not the same as optimal accuracy that could be achieved by individually labeling each of the 53,000 examples and then attempting a Kaggle style optimisation of the accuracy against the test set by running multiple different sophisticated models and ensembling the results together. The labeling process is always a trade off between speed and accuracy. In our app we gave a lot of control to the user about how they want to manage that trade-off. If they want to optimize on accuracy they can, it will just take a little longer. If they need to get it done as soon as possible the app can help them do that too, it just might be a little less accurate. Because the app offered that flexibility, we needed a model that could perform reasomably well on both speed and accuracy. For that we chose the SGDClassifier implementation in scikit-learn. The More Details on Benchmarking section at the end explains how we made that choice. We were looking for a reasonable level of accuracy that could be acceptable in a real-world scenario. We also used various techniques to improve speed vs accuracy outcomes.
 
 ### What we learned through using the App Ourselves
 Using the app ourselves a few things became obvious. The functionality to label single texts worked in a timely fashion and could allow labeling an entire corpus, however, it would be extremely slow. As in the example of an initial labeling of emails, only in the case where extreme accuracy was needed would it make sense to label 53,000 individually. The functionality to select a single text then locate similar texts by cosine similarity also worked well and enabled a batch labeling of those other texts with the same label. It also allowed each of the batch of tweets to be inspected before the user decided to batch label, and it allowed the user to adjust the size of the batch. Perhaps the user is happy with the top 10 most similar texts that they do share the same label but in the top 50 most similar they may notice a few that should not share the same label so they can choose to just label the 10 most similar. This will still be quicker than individual labeling. The user doesn’t have to manually check the similar texts, but the option is available. Once some labels of all types are available the functionality to learn from existing labels to generate new labels is available. Just like the similar texts functionality the user can inspect the texts that the app is proposing to label and can control the size of the batch to achieve their desired trade-off between speed and accuracy. The ability to search for texts and have exclude words in the search worked well. This was not constrained to the size of the batch so in some cases we saw that in one action we were able to label more than 30,000 of the 50,000 texts just by finding texts that matched one of the keywords. The processing time to label 30,000 tweets was a little longer than labeling 1 or 100 at a time but it was not unacceptably slow. Using the app made us realise that we had effectively allowed the user to have a large degree of control over the speed vs accuracy trade off. Another tool that worked well was the difficult texts section. This highlighted the texts that the supervised model was confident about labeling. This allowed the user to home in on those ones and provide the true label.
@@ -116,7 +82,7 @@ It may be a little abstract to think of accuracy being 3% or 4% higher so we can
 
 First to be clear on the process. The model in the app is trained on the labels provided in the labeling experiment then the same model is used to predict against the test set. The first time the model reaches 90% accuracy on the test set the number of training labels required to reach that threshold is recorded. We can see a vast improvement in time taken to reach the threshold where the Difficult Texts functionality is used. In fact it takes more than twice as long to reach the threshold without using Difficult Texts as it does using the 50 All Texts 20 Difficult Texts labeling pattern. We were very happy with this outcome as it shows that the app doesn't just lead to improvements in speed but it can improve accuracy in meaningful ways that correspond to realistic ways that the app could be used.
 
-### Automated Evaluation - Good Results in Terms of Speed and Accuracy
+### Automated Evaluation - Indicators for When to Stop Labeling
 
 
 ## Software Development Approach and Experience
@@ -129,45 +95,44 @@ First to be clear on the process. The model in the app is trained on the labels 
 
 
 
+### More Details on Benchmarking
+This section contains more details about the work we did on benchmarking and selecting which machine learning model to use in the app. You can think of it as a kind of appendix. The TLDR is that the SGDClassifier model we originally selected turns out to be a great choice for the compromise it achieves between accuracy and speed. As a starting point we trained the model on different sized subsets of the training data and used the trained model to predict against the test set provided with the data. We then plotted a curve to see the accuracy achieved against the test set with differing amounts of training data. We repeated this for three different fast machine learning models available in scikit-learn. Another important variable that impacts speed and accuracy is the maximum number of features output by the vectorizer. We experimented setting this to 100, 200, 300, 500, 800 and leaving it blank i.e. to take the full output of the vectorizer without constraining the number of features. We produced several charts of our benchmark runs. These visualizations helped us to compare the results in terms of speed and accuracy across the various settings of our grid search on the parameters of model type, max number of vectorizer features, and, number of training examples. 
+
+We conducted analysis of the dataset with both of the available type of labels provided in the initial dataset. This is because we recognise that there may be more than one way of labeling a text corpus and depending on the type, balance and number of labels required, the speed vs accuracy trade-off could shift, and, the number of labels required befored accuracy plateaus could also vary. 
+
+The figure below shows the results of our benchmark analysis on 5 different types of base models plus a stacking classifier that combined all five and ran an SGDClassifier on the output of those to predict against the test set. The x axis illustrates how much of the training data was used in each case. The colors indicate the number of vectorizer features used (null means there was no limit and all vectorizer features were used). The highest accuracy achieved predicting on the test set in any of these tests was by the stacking classifier trained on the entire training set. The accuracy in this case was 0.9747. The accuracy on the test set for the LinearSVC model trained on all the training data was 0.9743. This might make a big difference in a Kaggle competition but for most practical purposes the uplift from stacking may not be worth the additional technical complexity and run time. 
+
+![main_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144724590-f29feb6a-1812-4a70-8dae-e99033272505.png)
+
+From this chart we learnt quite a few things. Firstly, MultinomialNB models were not competitive on accuracy and needed a lot more training data to learn from the more complex input provided when the number of vectorizer input features was not constrained to a maximum value. On all other models we see that more vectorizer features led to much greater accuracy pretty rapidly. Using 100 vectorizer features the accuracy was well below what could be achieved by 200 and there were improvements on all models for each additional increase from 200 to 300, 300 to 500 and 500 to 800. By the time 800 features were used most of the gap in performance between 100 features and having no limit was covered. Accuracy was more volatile on the Perceptron and PassiveAggressiveClassifer whilst the highest accuracy was achieved with LinearSVC closely followed by SGDClassifier. 
+
+If we look just at the results on the first 3000 training examples we learn some additional things. The accuracy with stacking is 0.9550 at this point but with the SGDClassifier it is 0.9489 which is quite a bit lower. With LinearSVC the best accuracy of 0.9495 is achieved with 800 max features rather than the full output of the vectorizer showing that LinearSVC needs a few thousand more training examples to fully benefit from the increased complexity of a model using full vectorizer output. For Multinomial we can see that initially it does better with the fewest number of vectorizer features. 
+
+![main_target_baseline_accuracy_early](https://user-images.githubusercontent.com/48130648/144741746-ac41ed87-51f6-42cb-b225-3a82a76fedce.png)
+
+The following chart illustrates the accuracy versus run-time of the various models split out by the maximum number of vectorizer features. From this we can again see that MultinomialNB models were not competitive on accuracy and LinearSVC models were relatively not competitive on speed.
+
+![main_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144724744-0026f17e-252e-4ebd-8b14-11661b14d489.png)
+
+We initially chose SGDClassifier as the model for the app and based on this analysis we did not change that although we did increase the number of max features in the web app from the vectorizer from 100 to 800 to increase accuracy and we set n_jobs to -1 to increase speed. Our analysis showed that SGD achieved a good trade off between speed and accuracy.
+
+Speed on the stacking classifier is shown on the following chart and is clearly quite a bit slower than the individual charts. This is where SGD is used as the stacking model. Where LinearSVC was used as the stacking model in some cases we saw run times of 200+ seconds which is clearly an unacceptable wait time given the alternatives available with single models or the much faster SGD stacking. Again we see that using all features from the vectorizer takes a lot longer at 7.5 seconds training on all the data vs 2.7 training on all the data and limiting the vectorizer output to the top 800 features. We also notice an anomaly that in some cases the longest run-time is for the fewest number of training examples. For example using 800 vectorizer, training on 250 examples took 3.15 seconds compared to 2.7 training on all 53,000 records of training data.
+
+![main_target_stacking_speed_accuracy](https://user-images.githubusercontent.com/48130648/144742963-b989e838-8575-4652-8496-820189aaa3d6.png)
+
+Since there were two different types of labels available for this dataset we ran some of the same analysis but using the other label set. The results illustrate some important differences. The most obvious difference is that the highest accuracy achieved is much lower at under 0.75 versus over 0.97 on the event type labels. We can also see that more training examples are needed before the improvement in accuracy starts to flatten compared to the event type target. For the class labels accuracy was noticeably improving even after all the training data was being used.
+
+![harder_target_baseline_accuracy](https://user-images.githubusercontent.com/48130648/144743926-17133368-3aad-4261-b2dd-ba577008e374.png)
+
+In general we found that the models took a bit longer to learn on the harder to classify class label and this decreased speed was especially noticeable on the LinearSVC model. For the full amount of training data and all vectorizer features this model took nearly 4 seconds to run whilst all the other models ran in under 1.5 seconds. This is a big difference to a user of a website. The chart also shows the benefit of not using all vectorizer features but instead just taking the top 800. Doing this LinearSVC ran in under 2 seconds and the other models tended to run in less than half a second which again would be noticeable to the user of a website especially for a process that could be repeated hundreds or even thousands of times.
+
+![harder_target_speed_accuracy](https://user-images.githubusercontent.com/48130648/144743931-8ec356b0-eef3-4853-8811-02372bd7c30d.png)
+
+In summary what we learned from this benchmark analysis is that the SGD Classifier achieved a good trade-off between accuracy and speed since it was more accurate than most single models and much faster than LinearSVC. Stacking in some cases achieved the highest accuracy although it did not always do that and the increased accuracy came with an expense in terms of speed. We also learned that even using the same dataset with different label types the point at which accuracy predicting against a test set begins to plateau vary. This is important because it illustrates that there is no fixed point where the marginal gains of increased labeling tail off and it makes sense to stop labeling.
 
 
 
 
 
-# Original Markdown Notes
 
-You can use the [editor on GitHub](https://github.com/michp-ai/ML-rapid-text-labeling/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/michp-ai/ML-rapid-text-labeling/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.

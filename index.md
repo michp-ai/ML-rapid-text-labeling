@@ -129,11 +129,11 @@ The following are thoughts about future work that might be done on this app:
 
 By directing the user to such ‘difficult’ texts we hope to make the text labeling process clear to the user and thus increase their confidence with the application, as well as improve the quality of labels assigned.
 
-### Conclusion
+## Conclusion
 There is always a trade-off between speed and accuracy in labeling a previously unlabeled text corpus. The wide range of functionality in the web app we developed allows the user a lot of control over how they approach that speed-accuracy trade-off. The web app also allows an effective user experience. The user of the Difficult Texts function in the web app could be described as the ace feature that means acceptable accuracy can be achieved with much less labeling effort. Meanwhile, the Overall Quality Score provides the user with a clear indicator that is a good proxy for how accurately a model would perform based on the labels provided so far in the labeling process. By starting early, we were able to achieve a lot in the two months of our Capstone project. This is a good foundation for further developments of functionality and Applications of Data Science specifically in Natural Language Processing.
 
 
-### More Details on Benchmarking
+## More Details on Benchmarking
 This section contains more details about the work we did on benchmarking and selecting which machine learning model to use in the app. You can think of it as a kind of appendix. The TLDR is that the SGDClassifier model we originally selected turns out to be a great choice for the compromise it achieves between accuracy and speed. 
 
 As a starting point we trained the model on different sized subsets of the training data and used the trained model to predict against the test set provided with the data. We then plotted a curve to see the accuracy achieved against the test set with differing amounts of training data. We repeated this for three different fast machine learning models available in scikit-learn. Another important variable that impacts speed and accuracy is the maximum number of features output by the vectorizer. We experimented setting this to 100, 200, 300, 500, 800 and leaving it blank i.e., to take the full output of the vectorizer without constraining the number of features. We produced several charts of our benchmark runs. These visualizations helped us to compare the results in terms of speed and accuracy across the various settings of our grid search on the parameters of model type, max number of vectorizer features, and number of training examples. 

@@ -116,6 +116,11 @@ The following are thoughts about future work that might be done on this app:
 * Keeping the app as a web app would have benefits too. These could be things like:
   * Future development of the app would be easier to deploy because the users would be accessing the app from a central place (the deployed version of the app on the internet). 
   * The users could benefit from not having to consider what computational resources would be needed to run the application.
+* An option to show only unlabeled tweets in All Texts
+* An option to allow multiple save states not just one. (This is a constraint of the current free hosting option, that could be removed if we went towards paid hosting.)
+* Potentially add an option for the Label All Texts button to use slower and more powerful models. Most of the time the user is interacting with the app speed is important, but some users may be willing to wait longer to get the final labels. For example, a user might start labeling all texts before lunch and be willing to wait the length of a lunchbreak to get the final output, or they might be willing to wait overnight if it would lead to more accurate labels. That could allow the implementation neural networks and pre-trained embeddings which would likely improve accuracy. Two reasons we did not do this initially were speed and the constraints of free hosting.
+* A visual display of the progress of the Overall Quality Score.
+* Evaluate with other text corpuses.
 * The underlying assumption used in the application is that the user is responsible for the usage of the results of this application. This means that if the user chooses to label a certain text one way but another user chooses to label it another way, then the user is ultimately responsible for the results. Also, it would be unfeasible for the creators of the application to curate and control all of the application’s usage. This might bring up ethical concerns that should be considered. Future work thus could include considerations of the app’s usage that could have ethical implications. Currently, two approaches are being considered:
   * Provide a conspicuous disclaimer upfront, possible before even allowing the user to access the application, check if they agree to some terms and conditions of use of the application.
   * Emphasize the usage of the ‘Difficult Texts’ section. This section shows how the trained machine learning model will treat certain texts (probabilities of class membership). Currently, the ‘Difficult Texts’ section is a table in the web app, but in the future, it might be augmented (or replaced) by a dialogue with the user. This could look like this:
@@ -123,16 +128,6 @@ The following are thoughts about future work that might be done on this app:
       * ‘ὠBὠBὠBὠBὠB you should try this when you have the munchies ὡC @ Screaming Carrots’, what should this be labeled as?
 
 By directing the user to such ‘difficult’ texts we hope to make the text labeling process clear to the user and thus increase their confidence with the application, as well as improve the quality of labels assigned.
-
-## Next Steps
-In terms of the web app as a project we are exploring a couple of options of how it could be developed in future. In terms of specific functionality, there a few potential enhancements that could be made which are listed below:
-
-* Add clearer nudges to encourage the user to use the Difficult Texts approach as their main way of selecting new tweets to process.
-* An option to show only unlabeled tweets in All Texts
-* An option to allow multiple save states not just one. (This is a constraint of the current free hosting option, that could be removed if we went towards paid hosting.)
-* Potentially add an option for the Label All Texts button to use slower and more powerful models. Most of the time the user is interacting with the app speed is important, but some users may be willing to wait longer to get the final labels. For example, a user might start labeling all texts before lunch and be willing to wait the length of a lunchbreak to get the final output, or they might be willing to wait overnight if it would lead to more accurate labels. That could allow the implementation neural networks and pre-trained embeddings which would likely improve accuracy. Two reasons we did not do this initially were speed and the constraints of free hosting.
-* A visual display of the progress of the Overall Quality Score.
-* Evaluate with other text corpuses.
 
 ### Conclusion
 There is always a trade-off between speed and accuracy in labeling a previously unlabeled text corpus. The wide range of functionality in the web app we developed allows the user a lot of control over how they approach that speed-accuracy trade-off. The web app also allows an effective user experience. The user of the Difficult Texts function in the web app could be described as the ace feature that means acceptable accuracy can be achieved with much less labeling effort. Meanwhile, the Overall Quality Score provides the user with a clear indicator that is a good proxy for how accurately a model would perform based on the labels provided so far in the labeling process. By starting early, we were able to achieve a lot in the two months of our Capstone project. This is a good foundation for further developments of functionality and Applications of Data Science specifically in Natural Language Processing.

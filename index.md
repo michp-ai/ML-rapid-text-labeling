@@ -107,11 +107,22 @@ Another thing we can see from these last two charts is that both Overall Quality
 
 Overall, this is great news for the app. Not only does using the Difficult Texts feature to select the best tweets to label next for rapidly increasing accuracy, but the app also gives the user an effective signal in terms of the Overall Quality Score that helps them to decide when to stop labeling.
 
-## Software Development Approach and Experience ?
+## Considerations for Future Work
 
+The following are thoughts about future work that might be done on this app:
+* Even though this application was developed primarily as a web application, it might be useful to some users to have a version of the application that is deployed locally. 
+  * This would keep the user data from being on the internet which might be useful if the user makes use of data that should not be on the internet. 
+  * A local version of the app might give better performance because it would rely on the user-provided computation resources instead of the server (or servers) providing the computational power for the application.
+* Keeping the app as a web app would have benefits too. These could be things like:
+  * Future development of the app would be easier to deploy because the users would be accessing the app from a central place (the deployed version of the app on the internet). 
+  * The users could benefit from not having to consider what computational resources would be needed to run the application.
+* The underlying assumption used in the application is that the user is responsible for the usage of the results of this application. This means that if the user chooses to label a certain text one way but another user chooses to label it another way, then the user is ultimately responsible for the results. Also, it would be unfeasible for the creators of the application to curate and control all of the application’s usage. This might bring up ethical concerns that should be considered. Future work thus could include considerations of the app’s usage that could have ethical implications. Currently, two approaches are being considered:
+  * Provide a conspicuous disclaimer upfront, possible before even allowing the user to access the application, check if they agree to some terms and conditions of use of the application.
+  * Emphasize the usage of the ‘Difficult Texts’ section. This section shows how the trained machine learning model will treat certain texts (probabilities of class membership). Currently, the ‘Difficult Texts’ section is a table in the web app, but in the future, it might be augmented (or replaced) by a dialogue with the user. This could look like this:
+    * Several texts are ambiguous because they are likely to be labeled ‘Flood and ‘Other. Here is an example of such a text :
+      * ‘ὠBὠBὠBὠBὠB you should try this when you have the munchies ὡC @ Screaming Carrots’, what should this be labeled as?
 
-## Lessons Learned ?
-
+By directing the user to such ‘difficult’ texts we hope to make the text labeling process clear to the user and thus increase their confidence with the application, as well as improve the quality of labels assigned.
 
 ## Next Steps
 In terms of the web app as a project we are exploring a couple of options of how it could be developed in future. In terms of specific functionality, there a few potential enhancements that could be made which are listed below:

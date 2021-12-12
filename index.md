@@ -125,7 +125,7 @@ The following are thoughts about future work that might be done on this app:
   * Provide a conspicuous disclaimer upfront, possible before even allowing the user to access the application, check if they agree to some terms and conditions of use of the application.
   * Emphasize the usage of the ‘Difficult Texts’ section. This section shows how the trained machine learning model will treat certain texts (probabilities of class membership). Currently, the ‘Difficult Texts’ section is a table in the web app, but in the future, it might be augmented (or replaced) by a dialogue with the user. This could look like this:
     * Several texts are ambiguous because they are likely to be labeled ‘Flood and ‘Other. Here is an example of such a text :
-      * ‘ὠBὠBὠBὠBὠB you should try this when you have the munchies ὡC @ Screaming Carrots’, what should this be labeled as?
+      * <i>‘ὠBὠBὠBὠBὠB you should try this when you have the munchies ὡC @ Screaming Carrots’</i>, what should this be labeled as?
 
 By directing the user to such ‘difficult’ texts we hope to make the text labeling process clear to the user and thus increase their confidence with the application, as well as improve the quality of labels assigned.
 

@@ -31,10 +31,10 @@ The web app contains a wide range of functions. It allows users to (1) label a s
 
 This demo video introduces the key functionality:
 
-<video src="https://user-images.githubusercontent.com/48130648/145676244-40294aaa-ea51-4981-8fa0-c610f9e4d268.mp4" controls="controls" style="max-width: 730px;">
+<video src="https://user-images.githubusercontent.com/48130648/146453588-6ce8dbb9-14d3-46e9-9dd2-abc9f4b70380.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
-The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/). This is a working version of what is described in the blog containing all the functionality just described. 
+The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/). This is a working version of what is described in the blog containing all the functionality just described. The current deployment of the app (at the time of writing) is a demo to show how machine-learning can be used to label texts rapidly. Further development is planned. Currently the app can accommodate single user use.
 
 ## How we Built the Web App
 ### Development with Flask

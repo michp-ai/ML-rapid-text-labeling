@@ -22,9 +22,8 @@ The main dataset used in this project is the [Disaster tweets dataset](https://c
 
 ![labels_df](https://user-images.githubusercontent.com/48130648/144719551-6904a108-089b-4c66-a4c3-e55d9c2a7fc6.JPG)
 
-There is also a class type which classifies the event not so much in terms of the type of disaster but more in terms of the consequences of the event and human responses. The figure below illustrates the class type of labels with the dataset along with their value counts.
+There is also a class type which classifies the event not so much in terms of the type of disaster but more in terms of the consequences of the event and human responses. The figure below illustrates the class type of labels with the dataset along with their value counts. In the web app we decided to proceed with the labels shown above but in our analysis we also explored model performance on the other labels outside of the app.
 
-![alt_labels_df](https://user-images.githubusercontent.com/48130648/144719083-23410271-6b13-401b-959a-9424f6ed2546.JPG)
 
 ### Functionality of the Web App
 The web app contains a wide range of functions. It allows users to (1) label a single tweet at a time from a list of tweets in the dataset, (2) label groups of tweets based on the cosine similarity of their text, (3) label groups of tweets based on predictions made by the SGD Classifier, (4) label tweets by searching for text with include and exclude terms, (5) label the tweets that the SGD Classifier model is least confident in predicting, (6) label all remaining unlabeled tweets, and (7) to download the generated labels plus the SGD Classifier model trained on those labels.
@@ -128,8 +127,8 @@ The following are thoughts about future work that might be done on this app:
 * The underlying assumption used in the application is that the user is responsible for the usage of the results of this application. This means that if the user chooses to label a certain text one way but another user chooses to label it another way, then the user is ultimately responsible for the results. Also, it would be unfeasible for the creators of the application to curate and control all of the application’s usage. This might bring up ethical concerns that should be considered. Future work thus could include considerations of the app’s usage that could have ethical implications. Currently, two approaches are being considered:
   * Provide a conspicuous disclaimer upfront, possible before even allowing the user to access the application, check if they agree to some terms and conditions of use of the application.
   * Emphasize the usage of the ‘Difficult Texts’ section. This section shows how the trained machine learning model will treat certain texts (probabilities of class membership). Currently, the ‘Difficult Texts’ section is a table in the web app, but in the future, it might be augmented (or replaced) by a dialogue with the user. This could look like this:
-    * Several texts are ambiguous because they are likely to be labeled ‘Flood and ‘Other. Here is an example of such a text :
-      * <i>‘ὠBὠBὠBὠBὠB you should try this when you have the munchies ὡC @ Screaming Carrots’</i>, what should this be labeled as?
+    > Several texts are ambiguous because they are likely to be labeled ‘Flood and ‘Other. Here is an example of such a text :
+      > <i>‘ὠBὠBὠBὠBὠB you should try this when you have the munchies ὡC @ Screaming Carrots’</i>, what should this be labeled as?
 
 By directing the user to such ‘difficult’ texts we hope to make the text labeling process clear to the user and thus increase their confidence with the application, as well as improve the quality of labels assigned.
 

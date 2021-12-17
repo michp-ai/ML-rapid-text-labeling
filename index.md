@@ -22,7 +22,7 @@ The main dataset used in this project is the [Disaster tweets dataset](https://c
 
 ![labels_df](https://user-images.githubusercontent.com/48130648/144719551-6904a108-089b-4c66-a4c3-e55d9c2a7fc6.JPG)
 
-There is also a class type which classifies the event not so much in terms of the type of disaster but more in terms of the consequences of the event and human responses. The figure below illustrates the class type of labels with the dataset along with their value counts. In the web app we decided to proceed with the labels shown above but in our analysis we also explored model performance on the other labels outside of the app.
+There is also a class type that classifies the event not so much in terms of the type of disaster but more in terms of the consequences of the event and human responses. The figure below illustrates the class type of labels with the dataset, along with their value counts. In the web app, we decided to proceed with the labels shown above, but in our analysis, we also explored model performance on the other label type outside of the app.
 
 
 ### Functionality of the Web App
@@ -33,7 +33,7 @@ This demo video introduces the key functionality:
 <video src="https://user-images.githubusercontent.com/48130648/146453588-6ce8dbb9-14d3-46e9-9dd2-abc9f4b70380.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
-The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/). This is a working version of what is described in the blog containing all the functionality just described. The current deployment of the app (at the time of writing) is a demo to show how machine-learning can be used to label texts rapidly. Further development is planned. Currently the app can accommodate single user use.
+The web app itself is deployed [here](http://ml-rapid-text-labeling-app.herokuapp.com/). This is a working version of what is described in the blog containing all the functionality just described. The current deployment of the app (at the time of writing) is a demo to show how machine learning can be used to label texts rapidly. Further development is planned. Currently, the app can accommodate single-user use.
 
 ## How we Built the Web App
 ### Development with Flask
